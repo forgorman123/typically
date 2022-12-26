@@ -45,13 +45,10 @@ highlight.Parent = plr.Character
                 local Vector, OnScreen = Camera:WorldToScreenPoint(plr.Character.Head.Position)
                     Name.Position = Vector2.new(Vector.X, Vector.Y + math.clamp(Distance / 10, 10, 30) - 10)
                     Name.Size = math.clamp(30 - Distance / 10, 15, 30)
-                    Name.Visible = true
                     Name.Font = FontValue
                     --Name.Transparency = math.clamp((500 - Distance) / 200, 0.2, 1)
 
                 
-                Name.Text = string.format(plr.Name.." ["..tostring(math.floor(Distance*0.28)).."m]")
-                 
                 local PartCorners = GetPartCorners(plr.Character.HumanoidRootPart)
                 local VectorTR, OnScreenTR = Camera:WorldToScreenPoint(PartCorners.TR)
                 local VectorBR, OnScreenBR = Camera:WorldToScreenPoint(PartCorners.BR)
