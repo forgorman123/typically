@@ -1,0 +1,182 @@
+
+wait(0.1)
+local localPlayer = game:GetService("Players").LocalPlayer
+local HUD = localPlayer.PlayerGui.HUDGui.HUD
+local rbxPrefix = "rbxassetid://"
+
+HUD.Gamemodes.Position = UDim2.new(0, 0, 0, -50)
+
+local function editLeftCluster()
+	local HealthGUI = HUD:WaitForChild("HealthGUI")
+	HealthGUI.Name = "HealthGUI"
+	HealthGUI.SizeConstraint = Enum.SizeConstraint.RelativeYY
+	HealthGUI.Size = UDim2.new(0.6, 0, 0.15, 0)
+	HealthGUI.BackgroundTransparency = 1
+	HealthGUI.Position = UDim2.new(-0.024, 0, 0.84, 0)
+	HealthGUI.BorderSizePixel = 0
+	HealthGUI.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+
+	local HP = HealthGUI.HP
+	HP.ZIndex = 4
+	HP.AnchorPoint = Vector2.new(0.5, 0.5)
+	HP.Size = UDim2.new(0.225, 0, 0.671, 0)
+	HP.BackgroundTransparency = 1
+	HP.Position = UDim2.new(0.639, 0, 0.484, 0)
+	HP.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	HP.ScaleType = Enum.ScaleType.Fit
+	HP.Image = "http://www.roblox.com/asset/?id=6763820688"
+
+
+	local Container = HealthGUI.HP.Container
+	Container.ZIndex = 4
+	Container.AnchorPoint = Vector2.new(0.5, 0.5)
+	Container.SizeConstraint = Enum.SizeConstraint.RelativeYY
+	Container.Size = UDim2.new(0.92, 0, 0.92, 0)
+	Container.BackgroundTransparency = 1
+	Container.Position = UDim2.new(0.5, 0, 0.5, 0)
+	Container.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+
+	local HPVisual = Container.HPVisual
+	HPVisual.Name = "HPVisual"
+	HPVisual.ZIndex = 4
+	HPVisual.SizeConstraint = Enum.SizeConstraint.RelativeYY
+	HPVisual.Size = UDim2.new(1, 0, 1, 0)
+	HPVisual.BackgroundTransparency = 1
+	HPVisual.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	HPVisual.ImageRectSize = Vector2.new(1000, 1000)
+	HPVisual.Image = "http://www.roblox.com/asset/?id=6763821355"
+
+
+	local Disguise = HealthGUI.Disguise
+	Disguise.ZIndex = 10000000
+	Disguise.Size = UDim2.new(0.4080308, 0, 0.4860752, 0)
+	Disguise.BackgroundTransparency = 1
+	Disguise.Position = UDim2.new(0.01, 0, 0.4628185, 0)
+	Disguise.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+
+	local BG = Disguise.BG
+	BG.ZIndex = 2
+	BG.Size = UDim2.new(1, 6, 1, 6)
+	BG.BackgroundTransparency = 1
+	BG.Position = UDim2.new(0, -3, 0, -3)
+	BG.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	BG.ImageTransparency = 1
+	BG.ImageColor3 = Color3.fromRGB(253, 253, 253)
+	BG.Image = "http://www.roblox.com/asset/?id=6763791475"
+
+	local Visual = Disguise.Visual
+	Visual.ZIndex = 2
+	Visual.Size = UDim2.new(1, 0, 1, 0)
+	Visual.BackgroundTransparency = 1
+	Visual.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Visual.ImageTransparency = 1
+	Visual.ImageColor3 = Color3.fromRGB(150, 65, 65)
+	Visual.Image = "rbxassetid://6763791475"
+
+
+	local Killstreak = HealthGUI.Killstreak
+	Killstreak.Size = UDim2.new(0.385, 0, 0.238, 0)
+	Killstreak.BackgroundTransparency = 1
+	Killstreak.Position = UDim2.new(0.43, 0, 0.7, 0)
+	Killstreak.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	
+	local Right = Killstreak.Right
+	Right.ZIndex = 10
+	Right.Size = UDim2.new(1.955, 0, 1, 0)
+	Right.BackgroundTransparency = 1
+	Right.Position = UDim2.new(-0.955, 0, 0, 0)
+	Right.Active = true
+	Right.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+	Right.ScaleType = Enum.ScaleType.Fit
+	Right.ImageColor3 = Color3.fromRGB(150, 65, 65)
+	Right.SliceScale = 0
+	Right.Image = "rbxassetid://9205988361"
+	Right.SliceCenter = Rect.new(100, 100, 100, 100)
+
+	local Streak = Right.Streak
+	Streak.ZIndex = 1000
+	Streak.AnchorPoint = Vector2.new(1, 0.5)
+	Streak.Size = UDim2.new(0.9, 0, 0.5, 0)
+	Streak.BackgroundTransparency = 1
+	Streak.Position = UDim2.new(1, 0, 0.7, 0)
+	Streak.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Streak.FontSize = Enum.FontSize.Size14
+	Streak.TextSize = 14
+	Streak.TextColor3 = Color3.fromRGB(255, 255, 255)
+	Streak.Text = "Killstreak: 0"
+	Streak.TextWrapped = true
+	Streak.Font = Enum.Font.Ubuntu
+	Streak.TextWrap = true
+	Streak.TextXAlignment = Enum.TextXAlignment.Left
+	Streak.TextScaled = true
+
+	local RightBG = Right.RightBG
+	RightBG.AnchorPoint = Vector2.new(0.0, 0.0)
+	RightBG.ZIndex = -1000
+	RightBG.Size = UDim2.new(1, 0, 1, 0)
+	RightBG.BackgroundTransparency = 1
+	RightBG.Position = UDim2.new(0, 14, 0, 8)
+	RightBG.Active = true
+	RightBG.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+	RightBG.ScaleType = Enum.ScaleType.Fit
+	RightBG.ImageColor3 = Color3.fromRGB(0, 0, 0)
+	RightBG.SliceScale = 0
+	RightBG.Image = "rbxassetid://9205988361"
+	RightBG.SliceCenter = Rect.new(100, 100, 100, 100)
+
+
+
+	local Class = HealthGUI.Class
+	Class.ZIndex = -1000
+	Class.Size = UDim2.new(0.9715956, 0, 1.2714341, 0)
+	Class.BackgroundTransparency = 1
+	Class.Position = UDim2.new(-0.218163, 0, -0.4032074, 0)
+	Class.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Class.ScaleType = Enum.ScaleType.Fit
+	Class.Image = "rbxassetid://6664293370"
+
+end
+
+local function editRightCLuster()
+	local bars = HUD.Bars
+
+	for i,v in pairs (bars:GetChildren()) do
+		if v:IsA("Frame") then
+			for i,v in pairs (v:GetChildren()) do
+				if v:IsA("ImageLabel") then
+					if v.Name == ("Visual") then
+						local Visual = v
+						Visual.AnchorPoint = Vector2.new(0.5, 0.5)
+						Visual.ZIndex = 2
+						Visual.Size = UDim2.new(0.977, 0, 0.22, 0)
+						Visual.Position = UDim2.new(0.4997787, 0, 0.9235932, 0)
+						Visual.BorderSizePixel = 0
+						Visual.Image = "rbxassetid://9313095693"
+					else
+						if v.Name == ("BG") then
+							local BG = v
+							BG.AnchorPoint = Vector2.new(0.5, 0.5)
+							BG.Size = UDim2.new(0.9769999, 0, 0.22, 0)
+							BG.Position = UDim2.new(0.56, 0, 1.025, 0)
+							BG.BorderSizePixel = 0
+							BG.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+							BG.ScaleType = Enum.ScaleType.Tile
+							BG.ImageColor3 = Color3.fromRGB(0, 0, 0)
+							BG.TileSize = UDim2.new(0.1, 1000000, 10, 0)
+							BG.Image = "rbxassetid://9313095693"
+						else if v.Name == ("Meter") then
+								local Meter = v
+								Meter.Size = UDim2.new(0.7, 0, 0.1, 0)
+								Meter.Image = "rbxassetid://9313095693"
+								local MeterBG = Meter.MeterBG
+								MeterBG.Image = "rbxassetid://9313095693"
+							end
+						end
+					end
+				end
+			end
+		end
+	end
+end
+editLeftCluster()
+editRightCLuster()
