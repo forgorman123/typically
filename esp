@@ -32,10 +32,11 @@ local function DrawESP(plr)
     Name.Outline = true
     Name.Transparency = 1
     local highlight = Instance.new("Highlight")
-    
+    	highlight.FillTransparency = 0.4
+	highlight.FillColor = plr.TeamColor.Color
+	highlight.OutlineColor = plr.TeamColor.Color
     highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-    local folder = Instance.new("Folder", game:GetService("CoreGui"))
-    highlight.Parent = folder
+highlight.Parent = plr.Character
     local function Update()
         local c
         c = game:GetService("RunService").RenderStepped:Connect(function()
