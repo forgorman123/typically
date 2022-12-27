@@ -6,7 +6,7 @@ while true do
 	wait(4)
 	video["TV Error Image Noise"].Video = "rbxassetid://5608411652"
 	wait(0.3)
-	local randomvideo = math.random(1, 5)
+	local randomvideo = math.random(1, 10)
 	if randomvideo == 1 then
 	video["TV Error Image Noise"].Video = "rbxassetid://5670802294"
 	elseif randomvideo == 2 then
@@ -17,6 +17,16 @@ while true do
 			video["TV Error Image Noise"].Video = "rbxassetid://5608422571"
 				elseif randomvideo == 5 then
 			video["TV Error Image Noise"].Video = "rbxassetid://5670826209"
+				elseif randomvideo == 6 then
+			video["TV Error Image Noise"].Video = "rbxassetid://5608250999"
+				elseif randomvideo == 7 then
+			video["TV Error Image Noise"].Video = "rbxassetid://5608381934"
+				elseif randomvideo == 8 then
+			video["TV Error Image Noise"].Video = "rbxassetid://5608370112"
+							elseif randomvideo == 9 then
+			video["TV Error Image Noise"].Video = "rbxassetid://5608360493"
+									elseif randomvideo == 10 then
+			video["TV Error Image Noise"].Video = "rbxassetid://5670806798"
 	end
 end
 	end
