@@ -1,0 +1,79 @@
+local EnhancedVMAnims = true
+local EnhancedVMModels = true
+FieldOfView = 90 -- Can now go beyond 90!
+
+-- Variables, do not change
+local player = game.Players.LocalPlayer
+ReplicatedStorage = game.ReplicatedStorage
+Viewmodels = ReplicatedStorage.Viewmodels
+
+-- the magic starts
+player.Settings.FOV.Value = FieldOfView
+
+if EnhancedVMAnims == true then
+local LeverShotguns = {
+"v_Lever Shotgun",
+"v_Perceptionist",
+"v_Baby Face's Blaster",
+"v_Shotgun Cannon",
+"v_Specialist",
+}
+
+local RocketLaunchers = {
+"v_Rocket Launcher",
+"v_Big Bite",
+"v_Airstrike",
+"v_Blackbox",
+"v_Cow Mangler 5000",
+"v_Direct Hit",
+"v_Double Trouble",
+"v_G-Bomb",
+"v_Liberty Launcher",
+"v_Maverick",
+"v_Original",
+"v_Rocket Jumper",
+"v_Wrecker's Yard",
+}
+
+for i, v in pairs(Viewmodels:GetChildren()) do
+    if v:IsA("Model") then
+        local LeverShotgunsFinder = table.find(LeverShotguns,v.Name)
+        local RocketLaunchersFinder = table.find(RocketLaunchers,v.Name)
+        if LeverShotgunsFinder then
+            v.equip.AnimationId = "rbxassetid://2577904502"
+            v.idle.AnimationId = "rbxassetid://2164747421"
+        end
+        if RocketLaunchersFinder then
+            v.equip.AnimationId = "rbxassetid://3393559652"
+            v.idle.AnimationId = "rbxassetid://448946663"
+            v.fire.AnimationId = "rbxassetid://2735582776"
+                if v.Name == "v_Cow Mangler 5000" then
+                    v.reload.AnimationId = "rbxassetid://2161087850"
+                    v["1reload"].AnimationId = "rbxassetid://2161072742"
+                    v["2reload"].AnimationId = "rbxassetid://0"
+            end
+        end
+    end
+end
+end
+
+if EnhancedVMModels == true then
+    Viewmodels["v_Shotgun Cannon"].Handle.Bolts.Transparency = 1
+    Viewmodels["v_Shotgun Cannon"].Handle.Drum.Transparency = 1
+
+    local BetterWeld = Instance.new("WeldConstraint")
+    BetterWeld.Parent = Viewmodels["v_Soda Popper"]
+    BetterWeld.Part0 = Viewmodels["v_Soda Popper"].Barrel
+    BetterWeld.Part1 = Viewmodels["v_Soda Popper"].Soda
+    Viewmodels["v_Soda Popper"].Soda.Welded:Destroy()
+    Viewmodels["v_Soda Popper"].Soda.MeshId = "rbxassetid://6666519004"
+    Viewmodels["v_Soda Popper"].Soda.TextureID = "rbxassetid://6666519043"
+    Viewmodels["v_Soda Popper"].Soda.Size = Vector3.new(0.36, 0.36, 0.9)
+    Viewmodels["v_Soda Popper"].Soda.Orientation = Vector3.new(90, 0, 90)
+
+    Viewmodels["v_Cow Mangler 5000"].TeamColor.Material = Enum.Material.Neon
+
+    Viewmodels["v_Noisy Cricket"]["Arm_L2"].Material = Enum.Material.Neon
+    Viewmodels["v_Noisy Cricket"]["Arm_R2"].Material = Enum.Material.Neon
+    Viewmodels["v_Noisy Cricket"]["Arm 2"].Material = Enum.Material.Neon
+end
