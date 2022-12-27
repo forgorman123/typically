@@ -1,0 +1,23 @@
+game.Workspace.ChildAdded:Connect(function(item)
+	if item.Name == game.Players.LocalPlayer.Name.."'s Dispenser" then
+local video = game:GetObjects("rbxassetid://11943850902")[1]
+video.Parent = item:WaitForChild("TeamColor3").Base3.Screen
+while true do
+	wait(4)
+	video["TV Error Image Noise"].Video = "rbxassetid://5608411652"
+	wait(0.3)
+	local randomvideo = math.random(1, 5)
+	if randomvideo == 1 then
+	video["TV Error Image Noise"].Video = "rbxassetid://5670802294"
+	elseif randomvideo == 2 then
+			video["TV Error Image Noise"].Video = "rbxassetid://5608330602"
+				elseif randomvideo == 3 then
+			video["TV Error Image Noise"].Video = "rbxassetid://5608368298"
+				elseif randomvideo == 4 then
+			video["TV Error Image Noise"].Video = "rbxassetid://5608422571"
+				elseif randomvideo == 5 then
+			video["TV Error Image Noise"].Video = "rbxassetid://5670826209"
+	end
+end
+	end
+end)
