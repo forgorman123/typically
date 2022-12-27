@@ -27,6 +27,7 @@ while true do
 			video["TV Error Image Noise"].Video = "rbxassetid://5608360493"
 									elseif randomvideo == 10 then
 			video["TV Error Image Noise"].Video = "rbxassetid://5670806798"
+			wait(4)
 	end
 end
 	end
