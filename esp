@@ -57,7 +57,8 @@ end
 
 
 	game.Players.PlayerAdded:Connect(function(plr)
-	plr.CharacterAdded:Connect(function ()
+	plr.CharacterAdded:Connect(function()
+	local v = plr
 		local highlight = Instance.new("Highlight", v.Character)
 	highlight.FillTransparency = 0.9
 local stats = game:GetObjects("rbxassetid://11932518159")[1]
