@@ -1,0 +1,121 @@
+local count = 0
+local countreal = Instance.new("StringValue", workspace)
+
+function save()
+	local json;
+local http = game:GetService("HttpService");
+if (writefile) then
+json = http:JSONEncode(count);
+writefile("killSave", json)
+else
+	print("cant save l bozo")
+end
+end
+
+function load()
+	local http = game:GetService("HttpService");
+	if readfile and isfile and isfile("killSave") then
+count = http:JSONDecode(readfile("killSave"))
+	end
+end
+
+local name = "v_Lever Shotgun"
+local namewithoutv = string.sub(name, 3)
+
+local pansound = string.sub(name, 3)
+
+local db = true
+local deadguy = false
+
+local active = false
+
+game.Players.LocalPlayer.PlayerGui.HUDGui.Killfeed.ChildAdded:Connect(function(kill)
+if string.find(kill:WaitForChild("Kill").Text, game.Players.LocalPlayer.Name) and active == true then
+print("yay")
+countreal.Value = countreal.Value + 1
+print(countreal.Value)
+count = countreal.Value
+save()
+deadguy = true
+wait(0.02)
+deadguy = false
+end
+end)
+
+game.Workspace.Camera.ChildAdded:Connect(function(model)
+for _, item in pairs(game.ReplicatedStorage.Viewmodels:GetChildren()) do
+    if item:IsA("Model") then
+        local same = true
+        for _, part in pairs(item:GetDescendants()) do
+            if part:IsA("MeshPart") or part:IsA("BasePart") then
+                local partInModel = model:FindFirstChild(part.Name)
+                if partInModel and part.Color == partInModel.Color and model:FindFirstChild(part.Name) and item.Name ~= "v_Fists" and item.Name == name  and model:FindFirstChild(part.Name) then
+					
+                    -- the colors of the part in the model and the ReplicatedStorage model match
+
+
+                else
+                    same = false
+
+                    break
+        
+			
+            end
+        end
+		end
+        if same then
+
+            print(item.Name .. " can be detected for pan scripts")
+
+model:WaitForChild("CSSArms"):Destroy()
+for i, v in pairs(model:GetChildren()) do
+	if v.ClassName == "BasePart" or v.ClassName == "MeshPart" or  v.ClassName == "Part"  or  v.ClassName == "UnionOperation" then
+		v.Transparency = 1
+	end
+end
+
+local scattergun = game:GetObjects("rbxassetid://12228450984")[1]
+
+if game.Players.LocalPlayer.TeamColor == game.Teams.RED.TeamColor then
+scattergun.GFlankerArms["Left Arm"].FlankerSleeve_Left.TextureID = "rbxassetid://6523898903"
+scattergun.GFlankerArms["Right Arm"].FlankerSleeve_Right.TextureID = "rbxassetid://6523898903"
+end
+scattergun.Parent = workspace
+scattergun:SetPrimaryPartCFrame(model.HumanoidRootPart.CFrame)
+local weld = Instance.new("Weld", scattergun.HumanoidRootPart)
+weld.Part0 = weld.Parent
+scattergun.HumanoidRootPart.Weld.Part1 = model.HumanoidRootPart
+scattergun.HumanoidRootPart.Transparency = 1
+active = true
+	model.Guy.AnimationPlayed:Connect(function(animationTrack)
+local animreplicate = scattergun.Guy:LoadAnimation(scattergun[animationTrack.Animation.Name])
+animreplicate:Play()
+	end)
+	
+local animreplicate = scattergun.Guy:LoadAnimation(scattergun.equip)
+animreplicate:Play()
+
+        end
+    end
+end
+end)
+
+game.Workspace.Camera.ChildRemoved:Connect(function(thingy)
+	if thingy.Name == "Arms" then
+if game.Workspace:FindFirstChild("v_Scattergun") then
+ game.Workspace["v_Scattergun"]:Destroy()
+ active = false
+end
+	end
+end)
+
+print("loaded :yippee:")
+load()
+countreal.Value = count
+while wait() do
+if game.Players.LocalPlayer.PlayerGui.HUDGui.Inventory.Item1.ToolName.Text == namewithoutv then
+game.Players.LocalPlayer.PlayerGui.HUDGui.Inventory.Item1.ToolName.Text = game.Players.LocalPlayer.DisplayName.."'s Scripted Scattergun ("..count..")"
+game.Players.LocalPlayer.PlayerGui.HUDGui.Inventory.Item1.ToolName.TextColor3 = Color3.fromRGB(207, 106, 50)
+game.Players.LocalPlayer.PlayerGui.HUDGui.Inventory.Item1.backpack.Image = "rbxassetid://6862780932"
+end
+end
