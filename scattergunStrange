@@ -27,6 +27,11 @@ wait(3)
 morevolume:Destroy()
 	end
 end)
+		end
+	end
+	end)
+	end
+	end)
 --sounds
 
 local count = 0
