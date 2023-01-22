@@ -1,5 +1,4 @@
-
-	game.Players.LocalPlayer.Character.ChildAdded:connect(function (itemm)
+game.Players.LocalPlayer.Character.ChildAdded:connect(function (itemm)
 	if itemm.Name == "Gun" then
 itemm.ChildAdded:Connect(function(spawned)
 	if spawned.Name == "Boop" then
