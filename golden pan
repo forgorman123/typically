@@ -1,0 +1,237 @@
+local name = "v_Spartan Savior"
+
+
+local count = 0
+
+function save()
+	local json;
+local http = game:GetService("HttpService");
+if (writefile) then
+json = http:JSONEncode(count);
+writefile("killSavePan", json)
+else
+	print("cant save l bozo")
+end
+end
+
+function load()
+	local http = game:GetService("HttpService");
+	if readfile and isfile and isfile("killSavePan") then
+count = http:JSONDecode(readfile("killSavePan"))
+	end
+end
+
+local rs = game.ReplicatedStorage
+local gold1  =  game:GetObjects("rbxassetid://12242899211")[1]
+gold1.Parent = rs
+gold1.Name = "gold1"
+local gold2  =  game:GetObjects("rbxassetid://12242896447")[1]
+gold2.Parent = rs
+gold2.Name = "gold2"
+local gold3  =  game:GetObjects("rbxassetid://12242892785")[1]
+gold3.Parent = rs
+gold3.Name = "gold3"
+local gold4  =  game:GetObjects("rbxassetid://12242889070")[1]
+gold4.Parent = rs
+gold4.Name = "gold4"
+
+local namewithoutv = string.sub(name, 3)
+
+local pansound = string.sub(name, 3)
+
+	local e = game.ReplicatedStorage.Weapons[namewithoutv]
+	for i, v in pairs(e.Model:GetChildren()) do
+		if v.ClassName == "StringValue" and  v.Name ~= "Shoot" then
+local random = math.random(1, 2)
+if random == 1 then
+v.Value = "rbxassetid://7261571589"
+elseif random == 2 then
+	v.Value = "rbxassetid://7261572328"
+end
+		end
+	end
+
+local db = true
+local deadguy = false
+
+local active = false
+--[[local activee = false
+
+local uis = game:GetService("UserInputService")
+uis.InputBegan:Connect(function(key)
+	if key.KeyCode == Enum.KeyCode.Three then
+activee = true
+elseif key.KeyCode == Enum.KeyCode.Two then
+	activee = false
+	elseif key.KeyCode == Enum.KeyCode.One then
+	activee = false
+	end
+end) ]]
+game.Players.LocalPlayer.ScoreFolder.Kills.Changed:Connect(function()
+print("kill gained: amount of kills is now "..game.Players.LocalPlayer.ScoreFolder.Kills.Value)
+deadguy = true
+count = count + 1
+save()
+wait(0.7)
+deadguy = false
+end)
+
+game.Players.LocalPlayer.ScoreFolder.ChildAdded:Connect(function(thingy)
+print(thingy.Name)
+wait(1)
+if thingy.Name == "Kills" then
+	thingy.Changed:Connect(function()
+		print("kill gained: amount of kills is now "..game.Players.LocalPlayer.ScoreFolder.Kills.Value)
+deadguy = true
+count = count + 1
+save()	
+	end)
+end
+end)
+
+
+
+
+game.Workspace.Debris.ChildAdded:Connect(function(hi)
+task.wait(0.05)
+if hi:FindFirstChild("Humanoid2") and deadguy == true and game.Workspace:FindFirstChild("replicated pan") then
+	deadguy = false
+local goldsound = Instance.new("Sound", hi)
+goldsound.SoundId = "rbxassetid://507951071"
+goldsound:Play()
+
+
+local color = "Really black"
+
+hi["Body Colors"].HeadColor = BrickColor.new(color)
+
+hi["Body Colors"].LeftArmColor = BrickColor.new(color)
+
+hi["Body Colors"].LeftLegColor = BrickColor.new(color)
+
+hi["Body Colors"].RightLegColor = BrickColor.new(color)
+
+hi["Body Colors"].RightArmColor = BrickColor.new(color)
+
+hi["Body Colors"].TorsoColor = BrickColor.new(color) 
+for i, v in pairs(hi:GetChildren()) do
+if hi:FindFirstChild("Shirt") then
+		hi:WaitForChild("Shirt"):Destroy()
+end
+	if hi:FindFirstChild("Pants") then
+		hi:WaitForChild("Pants"):Destroy()
+end
+if v.ClassName == "BasePart" or  v.ClassName == "MeshPart" or  v.ClassName == "Part" then
+v.Transparency = 1
+end
+if v:FindFirstChild("Handle") then
+
+v:Destroy()
+
+end
+
+end
+local random = math.random(1, 4)
+
+local goldnew = game.ReplicatedStorage["gold"..random]:Clone()
+goldnew.Parent = hi
+goldnew:SetPrimaryPartCFrame(hi.HumanoidRootPart.CFrame)
+local weld = Instance.new("Weld", goldnew)
+weld.Part0 = goldnew.HumanoidRootPart
+weld.Part1 = hi.HumanoidRootPart
+elseif deadguy == false then
+print("pan: didnt not goldify because cooldown died")
+elseif active == false then
+	print("pan: didnt goldify because active = false")
+end
+end)
+
+
+game.Workspace.Camera.ChildAdded:Connect(function(model)
+for _, item in pairs(game.ReplicatedStorage.Viewmodels:GetChildren()) do
+    if item:IsA("Model") then
+        local same = true
+        for _, part in pairs(item:GetDescendants()) do
+            if part:IsA("MeshPart") or part:IsA("BasePart") then
+                local partInModel = model:FindFirstChild(part.Name)
+                if partInModel and part.Color == partInModel.Color and model:FindFirstChild(part.Name) and item.Name ~= "v_Fists" and item.Name == name  and model:FindFirstChild(part.Name) then
+					
+                    -- the colors of the part in the model and the ReplicatedStorage model match
+
+
+                else
+                    same = false
+                    break
+        
+				end
+            end
+        end
+        if same then
+			local pan = game:GetObjects("rbxassetid://12099262561")[1]
+pan.Parent = workspace
+pan.Name = "replicated pan"
+pan:SetPrimaryPartCFrame(model["Right Arm"].CFrame)
+pan.Weld.Part0 = pan.weldpart
+pan.Weld.Part1 = model["Right Arm"]
+for i, v in pairs(model:GetChildren()) do
+	if v.ClassName == "BasePart" or v.ClassName == "MeshPart" then
+	v.Transparency = 1
+	end
+end
+-- anims
+if game.Players.LocalPlayer.Status.Class.Value ~= "Annihilator" then
+if model:FindFirstChild("cfire") then
+model.cfire.AnimationId = "rbxassetid://2180425754"
+end
+
+if model:FindFirstChild("equip") then
+model.equip.AnimationId = "rbxassetid://2180395398"
+end
+
+if model:FindFirstChild("fire") then
+model.fire.AnimationId = "rbxassetid://2180420314"
+end
+
+if model:FindFirstChild("fire2") then
+model.fire2.AnimationId = "rbxassetid://2180421654"
+end
+
+if model:FindFirstChild("fire3") then
+model.fire3.AnimationId = "rbxassetid://2180420314"
+end
+
+if model:FindFirstChild("idle") then
+model.idle.AnimationId = "rbxassetid://444586166"
+end
+
+if model:FindFirstChild("inspect") then
+model.inspect.AnimationId = "rbxassetid://2180418290"
+end
+end
+wait(2)
+active = true
+        end
+    end
+end
+end)
+
+game.Workspace.Camera.ChildRemoved:Connect(function(thingy)
+	if thingy.Name == "Arms" then
+if game.Workspace:FindFirstChild("replicated pan") then
+ game.Workspace["replicated pan"]:Destroy()
+ active = false
+end
+	end
+end)
+
+load()
+while wait() do
+if game.Players.LocalPlayer.PlayerGui.HUDGui.Inventory.Item3.ToolName.Text == namewithoutv then
+game.Players.LocalPlayer.PlayerGui.HUDGui.Inventory.Item3.ToolName.Text = "Strange Scripted Golden Frying Pan ("..count..")"
+game.Players.LocalPlayer.PlayerGui.HUDGui.Inventory.Item3.ToolName.TextColor3 = Color3.fromRGB(207, 106, 50)
+game.Players.LocalPlayer.PlayerGui.HUDGui.Inventory.Item3.backpack.Image = "rbxassetid://7886498556"
+end
+
+
+end
+print("pan loaded, have fun!")
