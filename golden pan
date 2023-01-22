@@ -1,4 +1,4 @@
-local name = "v_Spartan Savior"
+local name = getgenv().Name
 
 
 local count = 0
