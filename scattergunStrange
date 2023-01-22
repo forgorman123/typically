@@ -16,32 +16,18 @@ itemm:WaitForChild("insert2").Value = "rbxassetid://9886772929"
 itemm:WaitForChild("insert3").Value = "rbxassetid://9886772929"
 itemm:WaitForChild("insert4").Value = "rbxassetid://9886772929"
 itemm:WaitForChild("insert5").Value = "rbxassetid://9886772929"
+
 itemm.ChildAdded:Connect(function(sound)
 	if sound.ClassName =="Sound" then
-sound.Volume = 10
+sound.Volume = 0
 local morevolume = sound:Clone()
 morevolume.Parent = sound
 morevolume.Volume = 0.5
 morevolume:Play()
+wait(3)
+morevolume:Destroy()
 	end
 end)
-
-game.Players.LocalPlayer.Character.Head.ChildAdded:Connect(function(sound)
-	if sound.ClassName =="Sound" and sound.Name == "ShootPlaying" and game.Players.LocalPlayer.Character.Gun.Boop.Value == "Lever Shotgun"  then
-sound.Volume = 10
-local morevolume = sound:Clone()
-morevolume.Parent = sound
-morevolume.Volume = 0.5
-morevolume:Play()
-	end
-end)
-
-print("uiewgtfbewbgew")
-		end
-	end
-	end)
-	end
-	end)
 --sounds
 
 local count = 0
