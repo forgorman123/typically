@@ -1,3 +1,49 @@
+
+	game.Players.LocalPlayer.Character.ChildAdded:connect(function (itemm)
+	if itemm.Name == "Gun" then
+itemm.ChildAdded:Connect(function(spawned)
+	if spawned.Name == "Boop" then
+		if spawned.Value == "Lever Shotgun" then
+local item = game.ReplicatedStorage.Weapons[spawned.Value].Model
+
+item:WaitForChild("Shoot").Value = "rbxassetid://9886772882"
+
+
+itemm.bolt.Value = "rbxassetid://0"
+itemm.boltin.Value = "rbxassetid://0"
+itemm:WaitForChild("insert1").Value = "rbxassetid://9886772929"
+itemm:WaitForChild("insert2").Value = "rbxassetid://9886772929"
+itemm:WaitForChild("insert3").Value = "rbxassetid://9886772929"
+itemm:WaitForChild("insert4").Value = "rbxassetid://9886772929"
+itemm:WaitForChild("insert5").Value = "rbxassetid://9886772929"
+itemm.ChildAdded:Connect(function(sound)
+	if sound.ClassName =="Sound" then
+sound.Volume = 10
+local morevolume = sound:Clone()
+morevolume.Parent = sound
+morevolume.Volume = 0.5
+morevolume:Play()
+	end
+end)
+
+game.Players.LocalPlayer.Character.Head.ChildAdded:Connect(function(sound)
+	if sound.ClassName =="Sound" and sound.Name == "ShootPlaying" and game.Players.LocalPlayer.Character.Gun.Boop.Value == "Lever Shotgun"  then
+sound.Volume = 10
+local morevolume = sound:Clone()
+morevolume.Parent = sound
+morevolume.Volume = 0.5
+morevolume:Play()
+	end
+end)
+
+print("uiewgtfbewbgew")
+		end
+	end
+	end)
+	end
+	end)
+--sounds
+
 local count = 0
 local countreal = Instance.new("StringValue", workspace)
 
