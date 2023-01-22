@@ -28,7 +28,13 @@ morevolume:Destroy()
 	end
 end)
 
-game.Players.LocalPlayer.Character.Head.ChildAdded:Connect(function(sound)
+
+		end
+	end
+	end)
+	end
+	end)
+	game.Players.LocalPlayer.Character.Head.ChildAdded:Connect(function(sound)
 	if sound.ClassName =="Sound" and sound.Name == "ShootPlaying" and game.Players.LocalPlayer.Character.Gun.Boop.Value == "Lever Shotgun"  then
 sound.Volume = 0
 local morevolume = sound:Clone()
@@ -39,11 +45,6 @@ wait(3)
 morevolume:Destroy()
 	end
 end)
-		end
-	end
-	end)
-	end
-	end)
 --sounds
 
 local count = 0
